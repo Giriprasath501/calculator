@@ -1,11 +1,11 @@
 function addition(a, b) {
-    return a + b;
+    return (a + b).toFixed(3);
 }
 function subtraction(a, b) {
-    return a - b;
+    return (a - b);
 }
 function multiplication(a, b) {
-    return a * b;
+    return (a * b).toFixed(3);
 }
 function divide(a, b) {
     return b === 0 ? "Error" : (a/b).toFixed(2);
@@ -16,6 +16,9 @@ let clr = document.querySelector(".clear");
 let ops = document.querySelectorAll(".num");
 let equals = document.querySelector(".equal");
 let dis = document.querySelector(".disp");
+let decimal = document.querySelector(".dot");
+let del = document.querySelector(".bspace");
+
 
 let a = "";
 let b = "";
@@ -72,6 +75,33 @@ function operate() {
             dis.textContent = `${a} ${o} ${b}`;
         });
     });
+    
+    decimal.addEventListener('click', () => {
+        
+
+        if (!oprnd) {
+            a += a === "" ? ".0": ".";
+        } else {
+            b += b === "" ? ".0": ".";
+        }
+        dis.textContent = `${a} ${o} ${b}`;
+    });
+        
+    del.addEventListener('click', () => {
+        if(a==="" && b===""){
+            return
+        }
+        
+
+        if (!oprnd) {
+            a=a.slice(0,-1);
+        } 
+        else {
+            b=b.slice(0,-1);
+        }
+        dis.textContent = `${a} ${o} ${b}`;
+    });
+    
 
     
     ops.forEach(button => {
